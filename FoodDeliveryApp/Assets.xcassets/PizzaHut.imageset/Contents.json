@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Pizza Hut.jpg",
+      "filename" : "Pizza_Hut_logo_colored-700x716.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Pizza Hut-1.jpg",
+      "filename" : "Pizza_Hut_logo_colored-700x716@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Pizza Hut-2.jpg",
+      "filename" : "Pizza_Hut_logo_colored-700x716@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
