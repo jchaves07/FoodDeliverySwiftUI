@@ -12,16 +12,25 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Spacer()
+            HStack {
+                WelcomeView()
+                Spacer()
+                Image(systemName: "cart")
+                    .frame(width: 40, height: 40, alignment: .center)
+                    .shadow(color: Color.black, radius: 35, x: 0, y: 15)
+            }
+            .padding()
+            SearchBoxView()
+            Spacer()
             ScrollView(.horizontal) {
-                          HStack(spacing: 10) {
-            ForEach(ProductData) { item in
-                ProductCardView(product: item)
-                            }
+                           HStack(spacing: 25) {
+            ForEach(CousineTypeData) { item in
+                Text(item.Name)
+                    .font(.system(size: 20))
+            }
                 }
             }
-            .padding(15)
-            .padding(.bottom, 15)
-            
+            ProductsView()
             Spacer()
             NearYouView()
             Spacer()
@@ -112,6 +121,15 @@ struct ProductRow: Identifiable{
     var Value: String
 }
 let ProductData = [ProductRow(Name: "Pigeon Burger", Image: "burger1", Description: "American Burger with Extra Chesse", Value: "$5,99"), ProductRow(Name: "Toasty Burgers", Image: "burger2", Description: "Mexican Beef burger with chees", Value: "$7,99")]
+
+
+struct CousineTypeRow: Identifiable {
+    var id = UUID()
+    var Name: String
+}
+let CousineTypeData = [CousineTypeRow(Name: "Burger 🍔"), CousineTypeRow(Name: "Pizza 🍕"), CousineTypeRow(Name: "Chicken 🍗"), CousineTypeRow(Name: "Fries 🍟")]
+
+
 struct NearYouRow: Identifiable{
     var id = UUID()
     var CommerceName: String
@@ -178,19 +196,73 @@ struct ProductCardView: View {
                 Spacer()
                 Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/) {
                     Image(systemName: "chevron.right")
+                        .padding()
                         .font(.system(size: 13))
                         .frame(width: 30, height: 30, alignment: .center)
                         
                         .background(Color("Yellow"))
                         .foregroundColor(Color.white)
                         .clipShape(Circle())
-                        .offset(y: -45)
-                    
                 }
-                .padding()
+            
             }
+            .offset(y: -25)
+            .padding(.horizontal)
         }
         
         
+    }
+}
+
+struct ProductsView: View {
+    var body: some View {
+        VStack {
+            ScrollView(.horizontal) {
+                HStack(spacing: 10) {
+                    ForEach(ProductData) { item in
+                        ProductCardView(product: item)
+                    }
+                }
+            }
+            .padding(15)
+        }
+    }
+}
+
+struct WelcomeView: View {
+    var body: some View {
+        HStack {
+            Text("👋")
+                .font(.system(size: 25))
+            VStack(alignment: .leading) {
+                Text("Good Morning")
+                    .font(.system(size: 13))
+                    .fontWeight(.light)
+                Text("Istiak Remon")
+                    .font(.system(size: 18))
+                    .fontWeight(.medium)
+            }
+        }
+    }
+}
+
+struct SearchBoxView: View {
+    var body: some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+                .foregroundColor(Color("FontGray"))
+            Spacer()
+            TextField("Search Food, Resturent, Drinks", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                .font(.system(size: 12))
+            
+            Image(systemName: "slider.horizontal.3")
+                .foregroundColor(Color("FontGray"))
+            
+        }
+        .padding()
+        .frame(width: 375, height: 50, alignment: .leading)
+        .background(Color("BoxLightGray"))
+        .border(Color("BoxBorderGray"), width: 1)
+        .cornerRadius(5)
     }
 }
